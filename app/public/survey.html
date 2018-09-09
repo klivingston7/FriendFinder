@@ -168,9 +168,11 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-xs-12 col-lg-12">
-            <p>
-              <a href="/api/friends">API Friends List </a> |
-              <a href="https://github.com/klivingston7/FriendFinder"> GitHub Repo</a>
+            <p style="vertical-align: middle;">
+              <a class="footContent" href="/">
+              <span class="glyphicon glyphicon-menu-left"></span> Go Back</a> |
+              <a class="footContent" href="/api/friends"> API Friends List </a> |
+              <a class="footContent" href="https://github.com/klivingston7/FriendFinder"> GitHub Repo</a>
             </p>
           </div>
         </div>
@@ -205,7 +207,6 @@
 
     $('#submit').on('click', function () {
       event.preventDefault();
-      $("#alertUser").hide();
 
       function validateSurvey() {
         var isValid = true;
@@ -213,16 +214,18 @@
         $(".form-control").each(function () {
           if ($(this).val() === "") {
             isValid = false;
+            $("#alertUser").show();
           }
         });
 
         $(".chosen-select").each(function () {
           if ($(this).val() === "") {
             isValid = false;
+            $("#alertUser").show();
           }
         });
         return isValid;
-      }
+      };
 
       if (validateSurvey()) {
 
@@ -263,8 +266,6 @@
           $('#q10').val("");
         });
 
-      } else {
-        $("#alertUser").show();
       }
     })
 

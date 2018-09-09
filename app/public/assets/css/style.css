@@ -146,8 +146,18 @@ h5 {
 footer {
     margin-top: 75px;
     letter-spacing: 2px;
+    font-size: 11px;
 }
 
 .surFooter {
     margin-top: 25px;
+}
+
+.footContent {
+    color: #EA4B41;
+}
+
+.footContent:hover {
+    color: rgb(3, 179, 232);
+    text-decoration: none;
 }
