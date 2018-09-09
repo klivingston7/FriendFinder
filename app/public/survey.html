@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>FriendFinder</title>
+  <!-- Link FF Icon -->
+  <link rel="shortcut icon" type="image/jpg" href="/assets/media/FF.png">
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -152,9 +154,8 @@
     <br>
     <!-- Submit Button -->
     <button type="submit" id="submit">Submit</button>
-
-    <hr>
     <br>
+    <hr>
     <footer class="surFooter">
       <div class="container">
         <div class="row text-center">
@@ -168,8 +169,97 @@
       </div>
     </footer>
 
+    <!-- Modal -->
+    <div id="resultsModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+          <div class="modal-header">
+            <h3 class="modal-title">Your Best Match</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4 id="matchName"></h4>
+            <img id="matchImg" src="https://i2.wp.com/scontent.cdninstagram.com/vp/2c701555fbccce0ca4ce0b8dfb67c185/5BFEC8E8/t51.2885-15/e15/39336860_532663630505425_5831920299196547072_n.jpg?w=1080&ssl=1"
+              alt="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closebtn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <script type="text/javascript">
+
+    $('#submit').on('click', function () {
+      event.preventDefault();
+
+      function validateSurvey() {
+        var isValid = true;
+
+        $(".form-control").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        $(".chosen-select").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      if (validateSurvey()) {
+
+        var userData = {
+          name: $("#name").val().trim(),
+          photo: $("#photo").val(),
+          scores: [
+            $('#q1').val(),
+            $('#q2').val(),
+            $('#q3').val(),
+            $('#q4').val(),
+            $('#q5').val(),
+            $('#q6').val(),
+            $('#q7').val(),
+            $('#q8').val(),
+            $('#q9').val(),
+            $('#q10').val(),
+          ]
+        };
+        console.log(userData);
+
+        $.post("/api/friends", userData, function (data) {
+          $("#matchName").text(data.name);
+          $("#matchImg").attr("src", data.photo);
+          $('#resultsModal').modal("toggle");
+          // clear survey
+          $("#name").val("");
+          $("#photo").val("");
+          $('#q1').val("");
+          $('#q2').val("");
+          $('#q3').val("");
+          $('#q4').val("");
+          $('#q5').val("");
+          $('#q6').val("");
+          $('#q7').val("");
+          $('#q8').val("");
+          $('#q9').val("");
+          $('#q10').val("");
+        });
+
+      } else {
+        alert("Please complete the survey before submitting!");
+      }
+    })
+
+  </script>
 </body>
 
 </html>
