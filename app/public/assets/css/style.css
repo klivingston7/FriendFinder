@@ -6,6 +6,9 @@ h1 {
     margin-top: 140px;
 }
 
+.mainImg {
+    max-width: 550px
+}
 .mainH2 {
     font-size: 20px;
     margin-top: 30px;
@@ -174,3 +177,27 @@ footer {
     color: rgb(3, 179, 232);
     text-decoration: none;
 }
+
+@media screen and (max-width: 992px) {
+    .mainH2 {
+        font-size: 17px;
+    }
+    .mainImg {
+        max-width: 400px
+    }
+    #matchImg {
+        width: 300px;
+    }
+  }
+
+@media screen and (max-width: 600px) {
+    .mainH2 {
+        font-size: 15px;
+    }
+    .mainImg {
+        max-width: 300px
+    }
+    #matchImg {
+        width: 200px;
+    }
+  }
