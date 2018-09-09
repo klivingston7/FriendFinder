@@ -91,6 +91,12 @@ h5 {
     color: #FFF;
 }
 
+#alertUser {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
 /* Modal */
 
 .modal-header {
