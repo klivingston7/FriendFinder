@@ -1,4 +1,4 @@
 # FriendFinder
 
-Heroku Link
+Heroku
 https://friend-finder1602.herokuapp.com/
